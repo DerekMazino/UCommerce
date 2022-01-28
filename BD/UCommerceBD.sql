@@ -9,16 +9,25 @@ create table Categoria(
     primary key(id_categoria)
 );
 
+create table Clasificacion(
+	id_clasificacion INT NOT NULL AUTO_INCREMENT,
+    nombre varchar(12) NOT NULL,
+    descripcion varchar(200),
+    primary key(id_clasificacion)
+);
+
 create table Usuario(
 	id_usuario INT NOT NULL AUTO_INCREMENT,
     nombre varchar(25) NOT NULL,
     apellido varchar(25) NOT NULL,
+    codigo varchar(11) NOT NULL,
     email varchar(100) NOT NULL,
     celular varchar(10) NOT NULL,
     imagen varchar(500),
-    user_password varchar(200),
+    user_password varchar(200) NOT NULL,
     primary key(id_usuario),
-    unique(email)
+    unique(email),
+    unique(codigo)
 );
 
 create table Tienda(
@@ -26,8 +35,8 @@ create table Tienda(
     nombre varchar(25) NOT NULL,
     descripcion varchar(200),
     logo varchar(500),
-    categoria_id int,
-    usuario_id int,
+    categoria_id int NOT NULL,
+    usuario_id int NOT NULL,
     primary key(id_tienda),
     unique(nombre),
     FOREIGN KEY (categoria_id) REFERENCES Categoria(id_categoria),
@@ -38,7 +47,7 @@ create table Seccion(
 	id_seccion INT NOT NULL AUTO_INCREMENT,
     nombre varchar(12) NOT NULL,
     descripcion varchar(200),
-    tienda_id int,
+    tienda_id int NOT NULL,
     primary key(id_seccion),
     FOREIGN KEY (tienda_id) REFERENCES Tienda(id_tienda)
 );
@@ -47,10 +56,12 @@ create table Producto(
 	id_producto INT NOT NULL AUTO_INCREMENT,
     nombre varchar(12) NOT NULL,
     descripcion varchar(200),
-    precio double,
-    seccion_id int,
+    precio double NOT NULL,
+    seccion_id int NOT NULL,
+    clasificacion_id int NOT NULL,
     primary key(id_producto),
-    FOREIGN KEY (seccion_id) REFERENCES Seccion(id_seccion)
+    FOREIGN KEY (seccion_id) REFERENCES Seccion(id_seccion),
+    FOREIGN KEY (clasificacion_id) REFERENCES Clasificacion(id_clasificacion)
 );
 
 create table MetodoPago(
