@@ -87,12 +87,32 @@ export const putUsuario = async (req: Request, resp: Response) => {
     }
 }
 
-export const deleteUsuario = (req: Request, resp: Response) => {
+export const deleteUsuario = async (req: Request, resp: Response) => {
 
-    const { id } = req.params;
+    const id = Number(req.params.id)
 
-    resp.json({
-        msg: 'deleteUsuario',
-        id
-    })
+    try {
+
+        const usuario = await prisma.usuario.findUnique({
+            where: { id_usuario: id },
+            include: {
+                Tienda: true,
+                Venta: true
+            }
+        })
+        if (!usuario) {
+            return resp.status(404).json({
+                msg: 'No existe un usuario con el id '+id,
+            })
+        }
+
+        const result = await prisma.usuario.delete({
+            where: { id_usuario: id },
+        })
+        resp.json(result)
+    } catch (error) {
+        resp.status(500).json({
+            msg: 'Hable con el administrador',
+        })
+    }
 }
