@@ -1,25 +1,40 @@
 import { Request, Response } from "express";
+import { PrismaClient } from "@prisma/client";
 
-export const getUsuarios = (req: Request, resp: Response) =>{
+const prisma = new PrismaClient();
+
+export const getUsuarios = async (req: Request, resp: Response) => {
+    const usuarios = await prisma.usuario.findMany({
+        include: {
+            Tienda: true,
+            Venta: true
+        }
+    })
     resp.json({
-        msg: 'getUsuarios'
+        usuarios
     })
 }
 
-export const getUsuario = (req: Request, resp: Response) =>{
+export const getUsuario = async (req: Request, resp: Response) => {
 
-    const {id} = req.params;
-
-    resp.json({
-        msg: 'getUsuario',
-        id
+    const id_search = Number(req.params.id);
+    const usuarioE = await prisma.usuario.findUnique({
+        where: { id_usuario: id_search },
+        include: {
+            Tienda: true,
+            Venta: true
+        }
     })
+    if (usuarioE)
+        resp.json({ usuarioE })
+    else
+        resp.status(404).json({ message: 'Usuario no encontrado!' })
 }
 
 
-export const postUsuario = (req: Request, resp: Response) =>{
+export const postUsuario = (req: Request, resp: Response) => {
 
-    const {body} = req;
+    const { body } = req;
 
     resp.json({
         msg: 'postUsuario',
@@ -27,10 +42,10 @@ export const postUsuario = (req: Request, resp: Response) =>{
     })
 }
 
-export const putUsuario = (req: Request, resp: Response) =>{
+export const putUsuario = (req: Request, resp: Response) => {
 
-    const {id} = req.params;
-    const {body} = req;
+    const { id } = req.params;
+    const { body } = req;
 
     resp.json({
         msg: 'putUsuario',
@@ -38,9 +53,9 @@ export const putUsuario = (req: Request, resp: Response) =>{
     })
 }
 
-export const deleteUsuario = (req: Request, resp: Response) =>{
+export const deleteUsuario = (req: Request, resp: Response) => {
 
-    const {id} = req.params;
+    const { id } = req.params;
 
     resp.json({
         msg: 'deleteUsuario',
