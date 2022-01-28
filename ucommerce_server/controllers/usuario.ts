@@ -32,14 +32,28 @@ export const getUsuario = async (req: Request, resp: Response) => {
 }
 
 
-export const postUsuario = (req: Request, resp: Response) => {
+export const postUsuario = async (req: Request, resp: Response) => {
 
-    const { body } = req;
+    const { nombre, apellido, codigo, email, celular, imagen, user_password } = req.body
 
-    resp.json({
-        msg: 'postUsuario',
-        body
-    })
+    try {
+        const result = await prisma.usuario.create({
+            data: {
+                nombre,
+                apellido,
+                codigo,
+                email,
+                celular,
+                imagen,
+                user_password
+            },
+        })
+        resp.json(result)
+    } catch (error) {
+        resp.status(500).json({
+            msg: 'Hable con el administrador',
+        })
+    }
 }
 
 export const putUsuario = (req: Request, resp: Response) => {

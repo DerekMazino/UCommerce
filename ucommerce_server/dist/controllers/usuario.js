@@ -39,13 +39,28 @@ const getUsuario = (req, resp) => __awaiter(void 0, void 0, void 0, function* ()
         resp.status(404).json({ message: 'Usuario no encontrado!' });
 });
 exports.getUsuario = getUsuario;
-const postUsuario = (req, resp) => {
-    const { body } = req;
-    resp.json({
-        msg: 'postUsuario',
-        body
-    });
-};
+const postUsuario = (req, resp) => __awaiter(void 0, void 0, void 0, function* () {
+    const { nombre, apellido, codigo, email, celular, imagen, user_password } = req.body;
+    try {
+        const result = yield prisma.usuario.create({
+            data: {
+                nombre,
+                apellido,
+                codigo,
+                email,
+                celular,
+                imagen,
+                user_password
+            },
+        });
+        resp.json(result);
+    }
+    catch (error) {
+        resp.status(500).json({
+            msg: 'Hable con el administrador',
+        });
+    }
+});
 exports.postUsuario = postUsuario;
 const putUsuario = (req, resp) => {
     const { id } = req.params;
