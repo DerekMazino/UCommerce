@@ -62,14 +62,33 @@ const postUsuario = (req, resp) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 exports.postUsuario = postUsuario;
-const putUsuario = (req, resp) => {
-    const { id } = req.params;
-    const { body } = req;
-    resp.json({
-        msg: 'putUsuario',
-        body
-    });
-};
+const putUsuario = (req, resp) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = Number(req.params.id);
+    try {
+        const usuario = yield prisma.usuario.findUnique({
+            where: { id_usuario: id },
+            include: {
+                Tienda: true,
+                Venta: true
+            }
+        });
+        if (!usuario) {
+            return resp.status(404).json({
+                msg: 'No existe un usuario con el id ' + id,
+            });
+        }
+        const result = yield prisma.usuario.update({
+            where: { id_usuario: id },
+            data: req.body
+        });
+        resp.json(result);
+    }
+    catch (error) {
+        resp.status(500).json({
+            msg: 'Hable con el administrador',
+        });
+    }
+});
 exports.putUsuario = putUsuario;
 const deleteUsuario = (req, resp) => {
     const { id } = req.params;
