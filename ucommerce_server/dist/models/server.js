@@ -7,13 +7,15 @@ const express_1 = __importDefault(require("express"));
 const usuario_1 = __importDefault(require("../routes/usuario"));
 const categoria_1 = __importDefault(require("../routes/categoria"));
 const metodos_pago_1 = __importDefault(require("../routes/metodos_pago"));
+const clasificacion_1 = __importDefault(require("../routes/clasificacion"));
 const cors_1 = __importDefault(require("cors"));
 class Server {
     constructor() {
         this.apiPaths = {
             usuarios: '/api/usuarios',
             categorias: '/api/categorias',
-            metodosPago: '/api/metodospago'
+            metodosPago: '/api/metodospago',
+            clasificaciones: '/api/clasificaciones'
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '8000';
@@ -34,6 +36,7 @@ class Server {
         this.app.use(this.apiPaths.usuarios, usuario_1.default);
         this.app.use(this.apiPaths.categorias, categoria_1.default);
         this.app.use(this.apiPaths.metodosPago, metodos_pago_1.default);
+        this.app.use(this.apiPaths.clasificaciones, clasificacion_1.default);
     }
     listen() {
         this.app.listen(this.port, () => {

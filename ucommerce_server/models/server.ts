@@ -1,7 +1,8 @@
 import express, {Application} from 'express';
 import usuarioRutas from '../routes/usuario';
 import categoriaRuta from '../routes/categoria';
-import metodosPagoRuta from '../routes/metodos_pago'
+import metodosPagoRuta from '../routes/metodos_pago';
+import clasificacionRuta from '../routes/clasificacion';
 import cors from 'cors';
 class Server{
 
@@ -10,7 +11,8 @@ class Server{
     private apiPaths = {
         usuarios: '/api/usuarios',
         categorias: '/api/categorias',
-        metodosPago: '/api/metodospago'
+        metodosPago: '/api/metodospago',
+        clasificaciones: '/api/clasificaciones'
     }
 
     constructor(){
@@ -36,7 +38,9 @@ class Server{
     routes(){
         this.app.use(this.apiPaths.usuarios, usuarioRutas);
         this.app.use(this.apiPaths.categorias, categoriaRuta);
-        this.app.use(this.apiPaths.metodosPago, metodosPagoRuta)
+        this.app.use(this.apiPaths.metodosPago, metodosPagoRuta);
+        this.app.use(this.apiPaths.clasificaciones, clasificacionRuta);
+        
     }
 
     listen(){
