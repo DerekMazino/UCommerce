@@ -1,12 +1,14 @@
 import express, {Application} from 'express';
 import usuarioRutas from '../routes/usuario';
+import categoriaRuta from '../routes/categoria';
 import cors from 'cors';
 class Server{
 
     private app: Application;
     private port: string;
     private apiPaths = {
-        usuarios: '/api/usuarios'
+        usuarios: '/api/usuarios',
+        categorias: '/api/categorias'
     }
 
     constructor(){
@@ -30,7 +32,8 @@ class Server{
     }
 
     routes(){
-        this.app.use(this.apiPaths.usuarios, usuarioRutas)
+        this.app.use(this.apiPaths.usuarios, usuarioRutas);
+        this.app.use(this.apiPaths.categorias, categoriaRuta);
     }
 
     listen(){

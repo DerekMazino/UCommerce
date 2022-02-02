@@ -9,7 +9,7 @@ datasource db {
 
 model Categoria {
   id_categoria Int      @id @default(autoincrement())
-  nombre       String   @db.VarChar(12)
+  nombre       String?  @db.VarChar(100)
   descripcion  String?  @db.VarChar(200)
   Tienda       Tienda[]
 }
