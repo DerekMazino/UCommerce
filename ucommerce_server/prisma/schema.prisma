@@ -1,0 +1,113 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Categoria {
+  id_categoria Int      @id @default(autoincrement())
+  nombre       String?  @db.VarChar(100)
+  descripcion  String?  @db.VarChar(200)
+  Tienda       Tienda[]
+}
+
+model DetalleVenta {
+  id_detalle_venta Int      @id @default(autoincrement())
+  venta_id         Int
+  producto_id      Int
+  precio_unitario  Float
+  cantidad         Int
+  Producto         Producto @relation(fields: [producto_id], references: [id_producto], onDelete: NoAction, onUpdate: NoAction, map: "detalleventa_ibfk_2")
+  Venta            Venta    @relation(fields: [venta_id], references: [id_venta], onDelete: NoAction, onUpdate: NoAction, map: "detalleventa_ibfk_1")
+
+  @@index([producto_id], map: "producto_id")
+  @@index([venta_id], map: "venta_id")
+}
+
+model MetodoPago {
+  id_metodo_pago Int     @id @default(autoincrement())
+  nombre         String  @db.VarChar(12)
+  Venta          Venta[]
+}
+
+model Producto {
+  id_producto      Int            @id @default(autoincrement())
+  nombre           String         @db.VarChar(12)
+  descripcion      String?        @db.VarChar(200)
+  precio           Float
+  seccion_id       Int
+  clasificacion_id Int
+  Clasificacion    Clasificacion  @relation(fields: [clasificacion_id], references: [id_clasificacion], onDelete: NoAction, onUpdate: NoAction, map: "producto_ibfk_2")
+  Seccion          Seccion        @relation(fields: [seccion_id], references: [id_seccion], onDelete: NoAction, onUpdate: NoAction, map: "producto_ibfk_1")
+  DetalleVenta     DetalleVenta[]
+
+  @@index([clasificacion_id], map: "clasificacion_id")
+  @@index([seccion_id], map: "seccion_id")
+}
+
+model Seccion {
+  id_seccion  Int        @id @default(autoincrement())
+  nombre      String     @db.VarChar(12)
+  descripcion String?    @db.VarChar(200)
+  tienda_id   Int
+  Tienda      Tienda     @relation(fields: [tienda_id], references: [id_tienda], onDelete: NoAction, onUpdate: NoAction, map: "seccion_ibfk_1")
+  Producto    Producto[]
+
+  @@index([tienda_id], map: "tienda_id")
+}
+
+model Tienda {
+  id_tienda    Int       @id @default(autoincrement())
+  nombre       String    @unique(map: "nombre") @db.VarChar(25)
+  descripcion  String?   @db.VarChar(200)
+  logo         String?   @db.VarChar(500)
+  categoria_id Int
+  usuario_id   Int
+  Categoria    Categoria @relation(fields: [categoria_id], references: [id_categoria], onDelete: NoAction, onUpdate: NoAction, map: "tienda_ibfk_1")
+  Usuario      Usuario   @relation(fields: [usuario_id], references: [id_usuario], onDelete: NoAction, onUpdate: NoAction, map: "tienda_ibfk_2")
+  Seccion      Seccion[]
+  Venta        Venta[]
+
+  @@index([categoria_id], map: "categoria_id")
+  @@index([usuario_id], map: "usuario_id")
+}
+
+model Usuario {
+  id_usuario    Int      @id @default(autoincrement())
+  nombre        String   @db.VarChar(25)
+  apellido      String   @db.VarChar(25)
+  codigo        String   @unique(map: "codigo") @db.VarChar(11)
+  email         String   @unique(map: "email") @db.VarChar(100)
+  celular       String   @db.VarChar(10)
+  imagen        String?  @db.VarChar(500)
+  user_password String   @db.VarChar(200)
+  Tienda        Tienda[]
+  Venta         Venta[]
+}
+
+model Venta {
+  id_venta       Int            @id @default(autoincrement())
+  tienda_id      Int
+  cliente_id     Int
+  fecha_venta    DateTime       @db.Date
+  total_pagar    Float?
+  metodo_pago_id Int?
+  Usuario        Usuario        @relation(fields: [cliente_id], references: [id_usuario], onDelete: NoAction, onUpdate: NoAction, map: "venta_ibfk_2")
+  MetodoPago     MetodoPago?    @relation(fields: [metodo_pago_id], references: [id_metodo_pago], onDelete: NoAction, onUpdate: NoAction, map: "venta_ibfk_3")
+  Tienda         Tienda         @relation(fields: [tienda_id], references: [id_tienda], onDelete: NoAction, onUpdate: NoAction, map: "venta_ibfk_1")
+  DetalleVenta   DetalleVenta[]
+
+  @@index([cliente_id], map: "cliente_id")
+  @@index([metodo_pago_id], map: "metodo_pago_id")
+  @@index([tienda_id], map: "tienda_id")
+}
+
+model Clasificacion {
+  id_clasificacion Int        @id @default(autoincrement())
+  nombre           String     @db.VarChar(12)
+  descripcion      String?    @db.VarChar(200)
+  Producto         Producto[]
+}
