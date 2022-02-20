@@ -35,9 +35,10 @@ model MetodoPago {
 
 model Producto {
   id_producto      Int            @id @default(autoincrement())
-  nombre           String         @db.VarChar(12)
+  nombre           String?        @db.VarChar(50)
   descripcion      String?        @db.VarChar(200)
   precio           Float
+  imagen           String?        @db.VarChar(500)
   seccion_id       Int
   clasificacion_id Int
   Clasificacion    Clasificacion  @relation(fields: [clasificacion_id], references: [id_clasificacion], onDelete: NoAction, onUpdate: NoAction, map: "producto_ibfk_2")
@@ -50,7 +51,7 @@ model Producto {
 
 model Seccion {
   id_seccion  Int        @id @default(autoincrement())
-  nombre      String     @db.VarChar(12)
+  nombre      String?    @db.VarChar(50)
   descripcion String?    @db.VarChar(200)
   tienda_id   Int
   Tienda      Tienda     @relation(fields: [tienda_id], references: [id_tienda], onDelete: NoAction, onUpdate: NoAction, map: "seccion_ibfk_1")
