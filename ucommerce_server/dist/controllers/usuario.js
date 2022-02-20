@@ -90,6 +90,7 @@ const putUsuario = (req, resp) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.putUsuario = putUsuario;
+//Eliminación Fisica, se recomienda eliminación logica
 const deleteUsuario = (req, resp) => __awaiter(void 0, void 0, void 0, function* () {
     const id = Number(req.params.id);
     try {
