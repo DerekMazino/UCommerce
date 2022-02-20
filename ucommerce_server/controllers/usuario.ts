@@ -86,7 +86,7 @@ export const putUsuario = async (req: Request, resp: Response) => {
         })
     }
 }
-
+//Eliminación Fisica, se recomienda eliminación logica
 export const deleteUsuario = async (req: Request, resp: Response) => {
 
     const id = Number(req.params.id)

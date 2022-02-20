@@ -3,6 +3,7 @@ import usuarioRutas from '../routes/usuario';
 import categoriaRuta from '../routes/categoria';
 import metodosPagoRuta from '../routes/metodos_pago';
 import clasificacionRuta from '../routes/clasificacion';
+import tiendaRuta from '../routes/tienda';
 import cors from 'cors';
 class Server{
 
@@ -12,7 +13,8 @@ class Server{
         usuarios: '/api/usuarios',
         categorias: '/api/categorias',
         metodosPago: '/api/metodospago',
-        clasificaciones: '/api/clasificaciones'
+        clasificaciones: '/api/clasificaciones',
+        tiendas: '/api/tiendas'
     }
 
     constructor(){
@@ -40,6 +42,7 @@ class Server{
         this.app.use(this.apiPaths.categorias, categoriaRuta);
         this.app.use(this.apiPaths.metodosPago, metodosPagoRuta);
         this.app.use(this.apiPaths.clasificaciones, clasificacionRuta);
+        this.app.use(this.apiPaths.tiendas, tiendaRuta);
         
     }
 
