@@ -13,7 +13,7 @@ exports.deleteVenta = exports.putVenta = exports.postVenta = void 0;
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 const postVenta = (req, resp) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id_venta, tienda_id, cliente_id, fecha_venta } = req.body;
+    const { id_venta, tienda_id, cliente_id } = req.body;
     try {
         const result = yield prisma.venta.create({
             data: {

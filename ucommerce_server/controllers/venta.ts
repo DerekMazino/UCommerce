@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 export const postVenta = async (req: Request, resp: Response) => {
 
-    const { id_venta, tienda_id, cliente_id, fecha_venta } = req.body
+    const { id_venta, tienda_id, cliente_id } = req.body
 
     try {
         const result = await prisma.venta.create({
