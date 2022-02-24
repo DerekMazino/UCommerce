@@ -93,7 +93,7 @@ model Venta {
   id_venta       Int            @id @default(autoincrement())
   tienda_id      Int
   cliente_id     Int
-  fecha_venta    DateTime       @db.Date
+  fecha_venta    DateTime?      @default(now()) @db.DateTime(0)
   total_pagar    Float?
   metodo_pago_id Int?
   Usuario        Usuario        @relation(fields: [cliente_id], references: [id_usuario], onDelete: NoAction, onUpdate: NoAction, map: "venta_ibfk_2")

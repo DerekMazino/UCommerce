@@ -11,6 +11,7 @@ const clasificacion_1 = __importDefault(require("../routes/clasificacion"));
 const tienda_1 = __importDefault(require("../routes/tienda"));
 const seccion_1 = __importDefault(require("../routes/seccion"));
 const producto_1 = __importDefault(require("../routes/producto"));
+const venta_1 = __importDefault(require("../routes/venta"));
 const cors_1 = __importDefault(require("cors"));
 class Server {
     constructor() {
@@ -21,7 +22,8 @@ class Server {
             clasificaciones: '/api/clasificaciones',
             tiendas: '/api/tiendas',
             secciones: '/api/secciones',
-            productos: '/api/productos'
+            productos: '/api/productos',
+            ventas: '/api/ventas'
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '8000';
@@ -46,6 +48,7 @@ class Server {
         this.app.use(this.apiPaths.tiendas, tienda_1.default);
         this.app.use(this.apiPaths.secciones, seccion_1.default);
         this.app.use(this.apiPaths.productos, producto_1.default);
+        this.app.use(this.apiPaths.ventas, venta_1.default);
     }
     listen() {
         this.app.listen(this.port, () => {
