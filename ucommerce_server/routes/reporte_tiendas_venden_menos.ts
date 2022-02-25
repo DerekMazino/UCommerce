@@ -1,6 +1,6 @@
 import { Router } from "express";
 import {  } from '../controllers/detalle_venta';
-import { getReporteVentas } from "../controllers/reporte_ventas_mas";
+import { getReporteVentas } from "../controllers/reporte_tiendas_venden_menos";
 
 const router = Router();
 

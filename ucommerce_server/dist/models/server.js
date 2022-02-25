@@ -13,7 +13,8 @@ const seccion_1 = __importDefault(require("../routes/seccion"));
 const producto_1 = __importDefault(require("../routes/producto"));
 const venta_1 = __importDefault(require("../routes/venta"));
 const detalle_venta_1 = __importDefault(require("../routes/detalle_venta"));
-const reporte_ventas_mas_1 = __importDefault(require("../routes/reporte_ventas_mas"));
+const reporte_tiendas_venden_mas_1 = __importDefault(require("../routes/reporte_tiendas_venden_mas"));
+const reporte_tiendas_venden_menos_1 = __importDefault(require("../routes/reporte_tiendas_venden_menos"));
 const cors_1 = __importDefault(require("cors"));
 class Server {
     constructor() {
@@ -27,7 +28,8 @@ class Server {
             productos: '/api/productos',
             ventas: '/api/ventas',
             detalleVentas: '/api/detalleventas',
-            reporteVentas: '/api/reporteventas'
+            reporteVentas: '/api/reporteventas',
+            reporteVentasMenos: '/api/reporteventasmenos'
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '8000';
@@ -54,7 +56,8 @@ class Server {
         this.app.use(this.apiPaths.productos, producto_1.default);
         this.app.use(this.apiPaths.ventas, venta_1.default);
         this.app.use(this.apiPaths.detalleVentas, detalle_venta_1.default);
-        this.app.use(this.apiPaths.reporteVentas, reporte_ventas_mas_1.default);
+        this.app.use(this.apiPaths.reporteVentas, reporte_tiendas_venden_mas_1.default);
+        this.app.use(this.apiPaths.reporteVentasMenos, reporte_tiendas_venden_menos_1.default);
     }
     listen() {
         this.app.listen(this.port, () => {
