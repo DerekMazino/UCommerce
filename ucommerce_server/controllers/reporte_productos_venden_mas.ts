@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 //Retorno de todas las tindas que estan en U-Commerce
-export const getReporteTiendasMenos = async (req: Request, resp: Response) => {
+export const getReporteMas = async (req: Request, resp: Response) => {
     const fecha_inicio = req.params.fecha_inicio;
     const fecha_fin = req.params.fecha_fin;
     const tiendas = await prisma.venta.groupBy({
@@ -22,7 +22,7 @@ export const getReporteTiendasMenos = async (req: Request, resp: Response) => {
         },
         orderBy: {
             _sum: {
-                total_pagar: 'asc'
+                total_pagar: 'desc'
             }
         },
         take: 10

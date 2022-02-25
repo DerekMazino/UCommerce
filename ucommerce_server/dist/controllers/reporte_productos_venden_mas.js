@@ -9,19 +9,36 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getReporteTiendasMenos = void 0;
+exports.getReporteMas = void 0;
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 //Retorno de todas las tindas que estan en U-Commerce
-const getReporteTiendasMenos = (req, resp) => __awaiter(void 0, void 0, void 0, function* () {
+const getReporteMas = (req, resp) => __awaiter(void 0, void 0, void 0, function* () {
     const fecha_inicio = req.params.fecha_inicio;
     const fecha_fin = req.params.fecha_fin;
-    const query = 'select nombre, descripcion, sum(total_pagar) as "Ventas totales" from Tienda join Venta on id_tienda=tienda_id where fecha_venta BETWEEN CAST("' + fecha_inicio + '" as DATE) AND CAST("' + fecha_fin + '" as DATE) group by nombre, descripcion order by sum(total_pagar) asc LIMIT 10;';
-    const tiendas = yield prisma.$queryRawUnsafe(query);
-    //where fecha_venta BETWEEN ${fecha_inicio} AND ${fecha_fin}
+    const tiendas = yield prisma.venta.groupBy({
+        by: ['tienda_id'],
+        where: {
+            fecha_venta: {
+                //Que traiga registros con fechas mayores o iguales (gt es solo mayor)
+                gte: new Date(fecha_inicio),
+                //Que traiga registros con fechas mejor o iguales (lt es solo mayor)
+                lte: new Date(fecha_fin),
+            }
+        },
+        _sum: {
+            total_pagar: true
+        },
+        orderBy: {
+            _sum: {
+                total_pagar: 'desc'
+            }
+        },
+        take: 10
+    });
     resp.json({
         tiendas
     });
 });
-exports.getReporteTiendasMenos = getReporteTiendasMenos;
-//# sourceMappingURL=reporte_tiendas_venden_menos.js.map
+exports.getReporteMas = getReporteMas;
+//# sourceMappingURL=reporte_productos_venden_mas.js.map

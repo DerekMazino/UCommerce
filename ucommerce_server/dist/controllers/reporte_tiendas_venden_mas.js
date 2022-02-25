@@ -16,26 +16,9 @@ const prisma = new client_1.PrismaClient();
 const getReporteTiendasMas = (req, resp) => __awaiter(void 0, void 0, void 0, function* () {
     const fecha_inicio = req.params.fecha_inicio;
     const fecha_fin = req.params.fecha_fin;
-    const tiendas = yield prisma.venta.groupBy({
-        by: ['tienda_id'],
-        where: {
-            fecha_venta: {
-                //Que traiga registros con fechas mayores o iguales (gt es solo mayor)
-                gte: new Date(fecha_inicio),
-                //Que traiga registros con fechas mejor o iguales (lt es solo mayor)
-                lte: new Date(fecha_fin),
-            }
-        },
-        _sum: {
-            total_pagar: true
-        },
-        orderBy: {
-            _sum: {
-                total_pagar: 'desc'
-            }
-        },
-        take: 10
-    });
+    const query = 'select nombre, descripcion, sum(total_pagar) as "Ventas totales" from Tienda join Venta on id_tienda=tienda_id where fecha_venta BETWEEN CAST("' + fecha_inicio + '" as DATE) AND CAST("' + fecha_fin + '" as DATE) group by nombre, descripcion order by sum(total_pagar) asc LIMIT 10;';
+    const tiendas = yield prisma.$queryRawUnsafe(query);
+    //where fecha_venta BETWEEN ${fecha_inicio} AND ${fecha_fin}
     resp.json({
         tiendas
     });

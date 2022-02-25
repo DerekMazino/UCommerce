@@ -8,8 +8,7 @@ import seccionRuta from '../routes/seccion';
 import productoRuta from '../routes/producto';
 import ventaRuta from '../routes/venta';
 import detalleVentaRuta from '../routes/detalle_venta';
-import reporteVentasRuta from '../routes/reporte_tiendas_venden_mas';
-import reporteVentasMenosRuta from '../routes/reporte_tiendas_venden_menos';
+import reporteVentasRuta from '../routes/reporte_tiendas';
 import cors from 'cors';
 class Server{
 
@@ -25,8 +24,7 @@ class Server{
         productos: '/api/productos',
         ventas: '/api/ventas',
         detalleVentas: '/api/detalleventas',
-        reporteVentas: '/api/reporteventas',
-        reporteVentasMenos: '/api/reporteventasmenos'
+        reporteVentas: '/api/reporteventas'
     }
 
     constructor(){
@@ -60,7 +58,6 @@ class Server{
         this.app.use(this.apiPaths.ventas, ventaRuta);
         this.app.use(this.apiPaths.detalleVentas, detalleVentaRuta);
         this.app.use(this.apiPaths.reporteVentas, reporteVentasRuta);
-        this.app.use(this.apiPaths.reporteVentasMenos, reporteVentasMenosRuta);
     }
 
     listen(){
