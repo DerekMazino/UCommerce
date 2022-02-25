@@ -9,18 +9,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getReporteVentas = void 0;
+exports.getReporteTiendasMenos = void 0;
 const client_1 = require("@prisma/client");
 const prisma = new client_1.PrismaClient();
 //Retorno de todas las tindas que estan en U-Commerce
-const getReporteVentas = (req, resp) => __awaiter(void 0, void 0, void 0, function* () {
+const getReporteTiendasMenos = (req, resp) => __awaiter(void 0, void 0, void 0, function* () {
     const fecha_inicio = req.params.fecha_inicio;
     const fecha_fin = req.params.fecha_fin;
-    const orderby = req.params.orderby;
-    const ventas = yield prisma.venta.findMany({
-        include: {
-            DetalleVenta: false
-        },
+    const tiendas = yield prisma.venta.groupBy({
+        by: ['tienda_id'],
         where: {
             fecha_venta: {
                 //Que traiga registros con fechas mayores o iguales (gt es solo mayor)
@@ -29,14 +26,19 @@ const getReporteVentas = (req, resp) => __awaiter(void 0, void 0, void 0, functi
                 lte: new Date(fecha_fin),
             }
         },
+        _sum: {
+            total_pagar: true
+        },
         orderBy: {
-            total_pagar: 'asc'
+            _sum: {
+                total_pagar: 'asc'
+            }
         },
         take: 10
     });
     resp.json({
-        ventas
+        tiendas
     });
 });
-exports.getReporteVentas = getReporteVentas;
+exports.getReporteTiendasMenos = getReporteTiendasMenos;
 //# sourceMappingURL=reporte_tiendas_venden_menos.js.map
