@@ -1,28 +1,18 @@
 import 'package:flutter/material.dart';
 
-class Explorar extends StatefulWidget {
+class Objeto extends StatefulWidget {
 
-  const Explorar({Key? key}) : super(key: key);
+  const Objeto({Key? key}) : super(key: key);
 
   @override
-  State<Explorar> createState() => _ExplorarState();
+  State<Objeto> createState() => _Objeto();
 }
 
-class _ExplorarState extends State<Explorar> {
-
-  final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
-  int _selectedIndex = 1;
-  int counter = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+class _Objeto extends State<Objeto> {
 
   @override
   Widget build(BuildContext context) {
-    const fontsize30 = TextStyle(fontSize: 30);
+    
     return Scaffold( 
       
       backgroundColor: Colors.white,
@@ -31,7 +21,6 @@ class _ExplorarState extends State<Explorar> {
         
         child: Column(          
           children: [
-            SizedBox(height: 16),
             Container(
               decoration: BoxDecoration(
                 color: Color(0xfff5f8fd),
@@ -58,8 +47,9 @@ class _ExplorarState extends State<Explorar> {
         ],),
       ),
       ),
-    );                              
-  } 
+    );
+  }
+
   Widget TargetList(){
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16),
@@ -94,37 +84,22 @@ class _ExplorarState extends State<Explorar> {
   }
 }
 
-class Carta extends StatelessWidget {
-  const Carta({
-    Key? key,
-  }) : super(key: key);
+class CategoriesTile extends StatelessWidget {
+  final String imgUrl, title;
+  CategoriesTile({this.title = "", this.imgUrl = ""});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Container(
-        height: 220,
-        width: 170,                       
-        child: Column(
-          children: <Widget>[
-            Container(
-              height: 170,
-              width: 150,
-              decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage("images/man.jpg"),),
-              ),
-            ),
-            Text("\$ 30.000", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Color(0xff9b96d6),),
-            ),
-            Text("Man Long T-Shirt"),
-          ],
-        ),
-      ),               
+    return Container(
+      child: Stack(
+        children: [
+          Container(
+            child: Image.network(imgUrl)
+          ),
+          Container(
+            child: Text(title),
+          ),
+      ],),
     );
   }
 }
-
-
-
-
-
