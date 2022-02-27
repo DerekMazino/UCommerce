@@ -1,0 +1,9 @@
+export 'package:ucommerce_client/data/models/categoria_model.dart';
+export 'package:ucommerce_client/data/models/clasificacion_model.dart';
+export 'package:ucommerce_client/data/models/detalle_venta_model.dart';
+export 'package:ucommerce_client/data/models/metodo_pago_model.dart';
+export 'package:ucommerce_client/data/models/producto_model.dart';
+export 'package:ucommerce_client/data/models/seccion_model.dart';
+export 'package:ucommerce_client/data/models/tienda_model.dart';
+export 'package:ucommerce_client/data/models/usuario_model.dart';
+export 'package:ucommerce_client/data/models/venta_model.dart';
