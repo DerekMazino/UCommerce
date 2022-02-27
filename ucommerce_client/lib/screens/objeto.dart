@@ -111,7 +111,7 @@ class _Objeto extends State<Objeto> {
             Text("Todos los dias a las 4p.m. en biblioteca, no te lo \n pierdas", style: TextStyle(fontSize: 15),),
           ],
         ),
-        SizedBox(height: 16),
+        SizedBox(height: 12),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -140,23 +140,22 @@ class _Objeto extends State<Objeto> {
             Text("\$3.6k", style: TextStyle(fontSize: 15, color: Colors.blue),),
             SizedBox(width: 16),
             MaterialButton(                   
-                    color: Colors.blue[900],
+                    color: Colors.purple[700],
                     shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0)),
                     padding: EdgeInsets.all(0),
                     onPressed: () {}, 
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Icon(Icons.shopping_cart),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("añadir a la cesta"),
-                        )
-                      ],
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Row(                      
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Icon(Icons.shopping_cart, color: Colors.white,),
+                          ),
+                          Text("añadir a la cesta",style: TextStyle(color: Colors.white),)
+                        ],
+                      ),
                     ),      
                   ),
             

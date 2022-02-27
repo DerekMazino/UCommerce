@@ -1,27 +1,24 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
+class Perfil extends StatefulWidget {
 
-  const HomeScreen({Key? key}) : super(key: key);
+  const Perfil({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<Perfil> createState() => _Perfil();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  int _selectedIndex = 0;
+class _Perfil extends State<Perfil> {
+  int _selectedIndex = 3;
   int counter = 0;
 
   void _onItemTapped(int index) {
     print(index);
     if(index==1){
-
     }
     else if(index==2){
-
     }
-    else if(index==3){
-      
+    else if(index==3){      
     }
 
     setState(() {
@@ -35,14 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(            
       body: Column(
         children: [            
-          Padding(padding: EdgeInsets.only(
-            top: 100,
-            left: 30,
-            right: 30,
-          ),
-            child: buildSearch()
-          ),
-          
+           SizedBox(height: 20),
           Row(
             children: [
               Text(
@@ -71,70 +61,41 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
           ],),
-
-          SizedBox(height: 12),
-          Container(
-            height: 50,
-            child: 
-              ListView(
-                scrollDirection: Axis.horizontal,
-                children: [                      
-                  SizedBox(width: 12),
-                  buildButton("Clasificados"),
-                  SizedBox(width: 12),
-                  buildButton("Servicios"),
-                  SizedBox(width: 12),
-                  buildButton("Accesorios"),
-                  SizedBox(width: 12),
-                  buildButton("Otros"),
-                  SizedBox(width: 12),            
-                ],
+          SizedBox(height: 40),
+          Center(
+            child: Card(              
+              child: Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: Icon(Icons.person, size: 80,),
               ),
+            ),
           ),
 
-          SizedBox(height: 12),
+          SizedBox(height: 40),
 
-          Container(
-            height: 200,
-            child: 
-              ListView(
-                scrollDirection: Axis.horizontal,
-                children: [                                        
-                  buildCard(),                  
-                  buildCard(),                  
-                  buildCard(),                  
-                  buildCard(),                              
-                ],
-              ),
-          ), 
-
-          Row(
-            children: [
-              SizedBox(width: 12),
-              Text(
-                "Categorias", 
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  decoration: TextDecoration.none,
-                  fontSize: 20.0,
-                  fontFamily: 'OpenSans',
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: MaterialButton(                   
+                  color: Colors.purple[700],
+                  shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0)),
+                  padding: EdgeInsets.all(0),
+                  onPressed: () {}, 
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("Modo administrador",style: TextStyle(color: Colors.white),),
+                        ),
+                      ],
+                    ),
+                  ),      
                 ),
-              ),
-          ],), 
+          ),
 
-          Container(
-            height: 200,
-            child: 
-              ListView(
-                scrollDirection: Axis.horizontal,
-                children: [                                        
-                  buildCard(),                  
-                  buildCard(),                  
-                  buildCard(),                  
-                  buildCard(),                              
-                ],
-              ),
-          ),   
       ],), 
                             
       bottomNavigationBar: BottomNavigationBar(
@@ -213,8 +174,5 @@ class _HomeScreenState extends State<HomeScreen> {
               borderRadius: BorderRadius.circular(30.0),
           ),
         ),
-      );
-       
+      );    
 }
-
-

@@ -13,6 +13,8 @@ class _Carro extends State<Carro> {
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
   int _selectedIndex = 1;
   int counter = 0;
+  bool valuefirst = false;   
+
 
   void _onItemTapped(int index) {
     setState(() {
@@ -20,93 +22,139 @@ class _Carro extends State<Carro> {
     });
   }
 
+  void clicCheck(bool value) {
+    setState(() {
+      valuefirst = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     const fontsize30 = TextStyle(fontSize: 30);
     return Scaffold(         
-      key: _key,
-      drawer: Drawer(), 
-      appBar: AppBar(      
-        elevation: 0.0,
-        backgroundColor: Colors.white,
-        leading: IconButton(
-            onPressed: (){}, 
-            icon: Icon(Icons.menu, color: Colors.black)
-            ),
-        actions: [
-          IconButton(
-            onPressed: (){}, 
-            icon: Icon(Icons.notifications, color: Colors.black)
-            ),
-          IconButton(
-            onPressed: (){}, 
-            icon: Icon(Icons.send, color: Colors.black)
-            ),
-        ],),    
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        margin: EdgeInsets.symmetric(horizontal: 10),
-        child: Column(
-          children: <Widget>[
-                        
-            Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                      Column(
-                        children: [
-                          ListView(
-                            scrollDirection: Axis.vertical,
-                            children: <Widget>[                      
+       
+      body: Stack(
+        children: [
+      ListView(
+        children: [
+          SizedBox(height: 30),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.arrow_back_ios),               
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 90.0),
+                child: Text("Carrito"),
+              ),
+              Icon(Icons.delete),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Card(
+              child: Row(
+                children: [
+                    SizedBox(width: 70),
+                    Container(
+                      height: 100,
+                      width: 100,
+                      child: ClipRRect(            
+                      borderRadius: BorderRadius.circular(16),
+                      child: Image.network("https://i.pinimg.com/originals/93/b5/f9/93b5f9913d2e4316cd6e541c67b9aed0.jpg", fit: BoxFit.cover,),
+                      ),
+                    ),
+                    Column(
+                      children: [
+                        Text("galletas con chispas"),
+                        Text("ricas galletas de sabor \n vainilla con chispas..."),
+                        SizedBox(height: 6.0,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            MaterialButton(                   
+                              color: Colors.blue,
+                              shape: CircleBorder(),
+                              padding: EdgeInsets.all(0),
+                              onPressed: () {}, 
+                              child: Icon(Icons.add),      
+                            ),
+                            Text("1", style: TextStyle(fontSize: 15),),
+                            MaterialButton(                   
+                              color: Colors.blue,
+                              shape: CircleBorder(),
+                              padding: EdgeInsets.all(0),
+                              onPressed: () {}, 
+                              child: Icon(Icons.remove),      
+                            ),
+                          ],
 
-                            ],
-                          )
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Carta()
-                        ],
-                      ),
-                  ],),
-                ],),
-            ],),
-        ],),
-      ),
+                        )
+                      ],
+                    ),
+                ],
+              ),
+            ),
+          ),
+        ],), 
+        Column(          
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: MaterialButton(                   
+                color: Colors.purple[700],
+                shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.0)),
+                padding: EdgeInsets.all(0),
+                onPressed: () {}, 
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Pagar",style: TextStyle(color: Colors.white),),
+                    ],
+                  ),
+                ),      
+              ),
+            ),            
+          ],
+        ),
+
+        ],), 
+        bottomNavigationBar: BottomNavigationBar(        
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(            
+            icon: Icon(Icons.home),
+            label: 'Home',  
+            backgroundColor: Colors.amber,         
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.store),
+            label: 'Ventas',
+            backgroundColor: Colors.amber,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shop),
+            label: 'Compra',
+            backgroundColor: Colors.amber,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.supervised_user_circle_sharp),
+            label: 'Perfil',
+            backgroundColor: Colors.amber,
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.purple[900],
+        unselectedItemColor: Colors.white,
+        backgroundColor: Colors.amber,
+        onTap: _onItemTapped,
+      ), 
     );                              
   } 
 }
 
-class Carta extends StatelessWidget {
-  const Carta({
-    Key? key,
-  }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Container(
-        height: 220,
-        width: 170,                       
-        child: Column(
-          children: <Widget>[
-            Container(
-              height: 170,
-              width: 150,
-              decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage("images/man.jpg"),),
-              ),
-            ),
-            Text("\$ 30.000", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Color(0xff9b96d6),),
-            ),
-            Text("Man Long T-Shirt"),
-          ],
-        ),
-      ),               
-    );
-  }
-}
+
+    
