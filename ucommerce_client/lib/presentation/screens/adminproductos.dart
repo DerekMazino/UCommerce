@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Admin extends StatefulWidget {
-  const Admin({Key? key}) : super(key: key);
+class Adminproductos extends StatefulWidget {
+  const Adminproductos({Key? key}) : super(key: key);
 
   @override
-  State<Admin> createState() => _Admin();
+  State<Adminproductos> createState() => _Adminproductos();
 }
 
-class _Admin extends State<Admin> {
+class _Adminproductos extends State<Adminproductos> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -91,7 +91,7 @@ class _Admin extends State<Admin> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Container(
-                  color: Colors.blue,
+                  color: Colors.grey,
                   child: ClipRRect(            
                   borderRadius: BorderRadius.circular(70),
                   child: Padding(
@@ -103,8 +103,76 @@ class _Admin extends State<Admin> {
               ),
             ],
           ),
-          SizedBox(height: 40),          
-      ],), 
+          SizedBox(height: 20),   
+          Text("Productos",
+            textAlign: TextAlign.left, 
+            style: TextStyle(                  
+            decoration: TextDecoration.none,
+            fontSize: 30.0,
+            fontFamily: 'OpenSans',                  
+          ),),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: DataTable(
+                  sortAscending: false,
+                  columns: [
+                    DataColumn(label: Text("Consulta")),
+                  ],
+                  rows: [
+                    DataRow(
+                      selected: true,
+                      cells: [
+                      DataCell(Text("10 productos mas vendidos")),
+                    ]),
+                    DataRow(cells: [
+                      DataCell(Text("10 productos menos vendidos")),
+                    ])
+                  ],
+                ),
+          ),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Column(
+                
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Desde:"),
+                  ),
+                  Container(
+                  decoration: BoxDecoration( 
+                    color:  Colors.grey,                  
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Text("01-01-2020"),
+                  )
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Hasta:"),
+                  ),
+                  Container(
+                  decoration: BoxDecoration(   
+                    color:  Colors.grey,                
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Text("01-01-2022"),
+                  )
+                  ),
+                ],
+              )
+            ],
+          )
+
+        ],), 
       ]),                    
       bottomNavigationBar: BottomNavigationBar(       
         items: const <BottomNavigationBarItem>[         
