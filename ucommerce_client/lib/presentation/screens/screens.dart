@@ -5,3 +5,4 @@ export 'package:ucommerce_client/presentation/screens/carro.dart';
 export 'package:ucommerce_client/presentation/screens/perfil.dart';
 export 'package:ucommerce_client/presentation/screens/admin.dart';
 export 'package:ucommerce_client/presentation/screens/adminproductos.dart';
+export 'package:ucommerce_client/presentation/screens/admintiendas.dart';

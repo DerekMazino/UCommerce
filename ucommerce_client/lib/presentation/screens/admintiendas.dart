@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Adminproductos extends StatefulWidget {
-  const Adminproductos({Key? key}) : super(key: key);
+class Admintiendas extends StatefulWidget {
+  const Admintiendas({Key? key}) : super(key: key);
 
   @override
-  State<Adminproductos> createState() => _Adminproductos();
+  State<Admintiendas> createState() => _Admintiendas();
 }
 
-class _Adminproductos extends State<Adminproductos> {
+class _Admintiendas extends State<Admintiendas> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -104,7 +104,7 @@ class _Adminproductos extends State<Adminproductos> {
             ],
           ),
           SizedBox(height: 20),   
-          Text("Productos",
+          Text("tiendas",
             textAlign: TextAlign.left, 
             style: TextStyle(                  
             decoration: TextDecoration.none,
@@ -122,10 +122,10 @@ class _Adminproductos extends State<Adminproductos> {
                     DataRow(
                       selected: true,
                       cells: [
-                      DataCell(Text("10 productos mas vendidos")),
+                      DataCell(Text("10 tiendas con mas ventas")),
                     ]),
                     DataRow(cells: [
-                      DataCell(Text("10 productos menos vendidos")),
+                      DataCell(Text("10 tiendas con menos ventas")),
                     ])
                   ],
                 ),

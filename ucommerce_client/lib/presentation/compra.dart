@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Adminproductos extends StatefulWidget {
-  const Adminproductos({Key? key}) : super(key: key);
+class Compra extends StatefulWidget {
+  const Compra({Key? key}) : super(key: key);
 
   @override
-  State<Adminproductos> createState() => _Adminproductos();
+  State<Compra> createState() => _Compra();
 }
 
-class _Adminproductos extends State<Adminproductos> {
+class _Compra extends State<Compra> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
@@ -27,24 +27,56 @@ class _Adminproductos extends State<Adminproductos> {
   Widget build(BuildContext context) {
     const fontsize30 = TextStyle(fontSize: 30);
     return Scaffold(            
-      body: Stack(
-        children: [     
-      Column(
+      body: Column(
         children: [            
           SizedBox(height: 20),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                "  ¡Bienvenido!", 
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  decoration: TextDecoration.none,
-                  fontSize: 40.0,
-                  fontFamily: 'OpenSans',                  
+              Icon(Icons.arrow_back_ios),               
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 90.0),
+                child: Text("Carrito"),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "Datos del pedido", 
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.none,
+                    fontSize: 30.0,
+                    fontFamily: 'OpenSans',                  
+                  ),
                 ),
               ),             
             ],
           ),
+
+          Card(
+            color: Colors.grey,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0),),
+            child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text("Agregar +"),
+            ),
+          ),
+
+          Container(
+            decoration: BoxDecoration(   
+            color:  Colors.grey,                
+            borderRadius: BorderRadius.all(Radius.circular(20))),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 60),
+            child: Text("Agregar +"),
+            ),
+          ),
+
           Row(
             children: [
               SizedBox(width: 12),
@@ -78,7 +110,7 @@ class _Adminproductos extends State<Adminproductos> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Container(
-                  color: Colors.amber,
+                  color: Colors.grey,
                   child: ClipRRect(            
                   borderRadius: BorderRadius.circular(70),
                   child: Padding(
@@ -91,7 +123,7 @@ class _Adminproductos extends State<Adminproductos> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Container(
-                  color: Colors.grey,
+                  color: Colors.blue,
                   child: ClipRRect(            
                   borderRadius: BorderRadius.circular(70),
                   child: Padding(
@@ -104,7 +136,7 @@ class _Adminproductos extends State<Adminproductos> {
             ],
           ),
           SizedBox(height: 20),   
-          Text("Productos",
+          Text("Tiendas",
             textAlign: TextAlign.left, 
             style: TextStyle(                  
             decoration: TextDecoration.none,
@@ -122,10 +154,10 @@ class _Adminproductos extends State<Adminproductos> {
                     DataRow(
                       selected: true,
                       cells: [
-                      DataCell(Text("10 productos mas vendidos")),
+                      DataCell(Text("10 tiendas con mas ventas")),
                     ]),
                     DataRow(cells: [
-                      DataCell(Text("10 productos menos vendidos")),
+                      DataCell(Text("10 tiendas con menos ventas")),
                     ])
                   ],
                 ),
@@ -134,8 +166,7 @@ class _Adminproductos extends State<Adminproductos> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Column(
-                
+              Column(                
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -165,34 +196,13 @@ class _Adminproductos extends State<Adminproductos> {
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Text("01-01-2022"),
-                  )
+                  ),
                   ),
                 ],
-              )
+              ),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: MaterialButton(                   
-                  color: Colors.purple[700],
-                  shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0)),
-                  padding: EdgeInsets.all(0),
-                  onPressed: () {}, 
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Generar reporte",style: TextStyle(color: Colors.white),),
-                      ],
-                    ),
-                  ),      
-                ),
-          ),
-
-        ],), 
-      ]),                    
+        ],),                    
       bottomNavigationBar: BottomNavigationBar(       
         items: const <BottomNavigationBarItem>[         
           BottomNavigationBarItem(
