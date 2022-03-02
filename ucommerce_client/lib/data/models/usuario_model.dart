@@ -4,32 +4,34 @@
 
 import 'dart:convert';
 
-class Usuario {
-  Usuario({
-    required this.idUsuario,
-    required this.nombre,
-    required this.apellido,
-    required this.codigo,
-    required this.email,
-    required this.celular,
-    this.imagen,
-    required this.userPassword,
-  });
+import 'package:ucommerce_client/domain/entities/entities.dart';
 
-  int idUsuario;
-  String nombre;
-  String apellido;
-  String codigo;
-  String email;
-  String celular;
-  String? imagen;
-  String userPassword;
+class UsuarioModel extends UsuarioEntity {
+  UsuarioModel({
+    required int idUsuario,
+    required String nombre,
+    required String apellido,
+    required String codigo,
+    required String email,
+    required String celular,
+    String? imagen,
+    required String userPassword,
+  }) : super(
+            idUsuario: idUsuario,
+            nombre: nombre,
+            apellido: apellido,
+            codigo: codigo,
+            email: email,
+            celular: celular,
+            imagen: imagen,
+            userPassword: userPassword);
 
-  factory Usuario.fromJson(String str) => Usuario.fromMap(json.decode(str));
+  factory UsuarioModel.fromJson(String str) =>
+      UsuarioModel.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory Usuario.fromMap(Map<String, dynamic> json) => Usuario(
+  factory UsuarioModel.fromMap(Map<String, dynamic> json) => UsuarioModel(
         idUsuario: json["id_usuario"],
         nombre: json["nombre"],
         apellido: json["apellido"],

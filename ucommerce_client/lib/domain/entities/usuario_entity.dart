@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-class Usuario extends Equatable {
-  Usuario({
+class UsuarioEntity extends Equatable {
+  UsuarioEntity({
     required this.idUsuario,
     required this.nombre,
     required this.apellido,
