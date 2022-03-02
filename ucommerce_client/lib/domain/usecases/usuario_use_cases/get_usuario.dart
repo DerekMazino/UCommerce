@@ -5,12 +5,12 @@ import 'package:ucommerce_client/core/usecases/usecase.dart';
 import 'package:ucommerce_client/domain/entities/entities.dart';
 import 'package:ucommerce_client/domain/repositories/usuario_repository.dart';
 
-class GetUsuarioUseCase implements UseCase<Usuario, Params> {
+class GetUsuarioUseCase implements UseCase<UsuarioEntity, Params> {
   final UsuarioRepository? usuarioRepository;
   GetUsuarioUseCase(this.usuarioRepository);
 
   @override
-  Future<Either<Failure, Usuario>> call(Params params) async {
+  Future<Either<Failure, UsuarioEntity>> call(Params params) async {
     return await usuarioRepository!.getUsuario(params.id);
   }
 }
