@@ -6,3 +6,4 @@ export 'package:ucommerce_client/presentation/screens/perfil.dart';
 export 'package:ucommerce_client/presentation/screens/admin.dart';
 export 'package:ucommerce_client/presentation/screens/adminproductos.dart';
 export 'package:ucommerce_client/presentation/screens/admintiendas.dart';
+export 'package:ucommerce_client/presentation/screens/compra.dart';
