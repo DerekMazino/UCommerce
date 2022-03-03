@@ -10,3 +10,4 @@ export 'package:ucommerce_client/presentation/screens/compra.dart';
 export 'package:ucommerce_client/presentation/screens/comprac.dart';
 export 'package:ucommerce_client/presentation/screens/succes.dart';
 export 'package:ucommerce_client/presentation/screens/pedido.dart';
+export 'package:ucommerce_client/presentation/screens/tienda.dart';
