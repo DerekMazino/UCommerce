@@ -27,8 +27,7 @@ class _ExplorarState extends State<Explorar> {
       
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
-      child: Container(
-        
+      child: Container(       
         child: Column(          
           children: [
             SizedBox(height: 16),
