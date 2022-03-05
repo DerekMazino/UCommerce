@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:ucommerce_client/core/error/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ucommerce_client/core/usecases/usecase.dart';
-import 'package:ucommerce_client/features/reportes/domain/entities/reporte_productos.dart';
+import 'package:ucommerce_client/features/reportes/domain/entities/reporte_productos_entity.dart';
 import 'package:ucommerce_client/features/reportes/domain/repositories/reportes_repository.dart';
 
 class GetReporteTiendas implements UseCase<ReporteTiendas, Params> {

@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:ucommerce_client/core/error/failures.dart';
-import 'package:ucommerce_client/features/reportes/domain/entities/reporte_productos.dart';
-import 'package:ucommerce_client/features/reportes/domain/entities/reporte_tiendas.dart';
+import 'package:ucommerce_client/features/reportes/domain/entities/reporte_productos_entity.dart';
+import 'package:ucommerce_client/features/reportes/domain/entities/reporte_tiendas_entity.dart';
 
 abstract class ReportesRepository {
   Future<Either<Failure, ReporteTiendas>> getReporteTiendas(

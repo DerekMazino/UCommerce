@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:ucommerce_client/features/reportes/domain/entities/tienda.dart';
+import 'package:ucommerce_client/features/reportes/domain/entities/tienda_entity.dart';
 
 class ReporteTiendas extends Equatable {
   ReporteTiendas({

@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:ucommerce_client/features/reportes/domain/entities/producto.dart';
+import 'package:ucommerce_client/features/reportes/domain/entities/producto_entity.dart';
 
 class ReporteProductos extends Equatable {
   ReporteProductos({
