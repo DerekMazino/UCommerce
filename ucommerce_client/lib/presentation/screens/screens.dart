@@ -1,4 +1,4 @@
-export 'package:ucommerce_client/presentation/screens/home_screen.dart';
+export 'package:ucommerce_client/features/navegaci%C3%B3n/presentation/screens/home_screen.dart';
 export 'package:ucommerce_client/presentation/screens/explorar.dart';
 export 'package:ucommerce_client/presentation/screens/objeto.dart';
 export 'package:ucommerce_client/presentation/screens/carro.dart';
