@@ -1,6 +1,6 @@
 {
-    "name": "ucommerce_client",
-    "short_name": "ucommerce_client",
+    "name": "u_commerce_client_prototype",
+    "short_name": "u_commerce_client_prototype",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

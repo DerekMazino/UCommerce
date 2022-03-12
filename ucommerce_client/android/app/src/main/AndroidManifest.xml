@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.ucommerce_client">
+    package="com.example.u_commerce_client_prototype">
    <application
-        android:label="ucommerce_client"
+        android:label="u_commerce_client_prototype"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
