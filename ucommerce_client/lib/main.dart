@@ -1,21 +1,4 @@
-
 import 'package:flutter/material.dart';
-import 'package:ucommerce_client/screens/home_screen.dart';
+import 'package:u_commerce_client_prototype/app/app.dart';
 
-void main() {
-  runApp( const MyApp() );
-}
-
-class MyApp extends StatelessWidget {
-
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-     debugShowCheckedModeBanner:  false,
-     home: HomeScreen()
-    );
-  }
-
-}
+void main() => runApp(const App());

@@ -1,4 +1,4 @@
-# ucommerce_client
+# u_commerce_client_prototype
 
 A new Flutter project.
 
